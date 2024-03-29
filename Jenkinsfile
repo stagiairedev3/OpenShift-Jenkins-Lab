@@ -100,7 +100,7 @@ pipeline {
                     ** TODO: Use the deployApplication() function, defined above, to deploy birthday-paradox to Test
                     **       Be sure to use the parameters that have already been defined in the pipeline.
                     */
-                    deployApplication(appName, imageTag, devProject, replicas)
+                    deployApplication(appName, imageTag, testProject, replicas)
                 }
             }
         }
@@ -124,7 +124,7 @@ pipeline {
                     ** TODO: Use the deployApplication() function, defined above, to deploy birthday-paradox to Prod
                     ** Be sure to use the parameters that have already been defined in the pipeline.
                     */
-                    deployApplication(appName, imageTag, devProject, replicas)
+                    deployApplication(appName, imageTag, prodProject, replicas)
                 }
             }
         }
