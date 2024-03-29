@@ -1,6 +1,6 @@
 def appName = "birthday-paradox"
 def replicas = "1"
-def devProject = // TODO: Your dev project name goes here
+def devProject = stagiere3-dev// TODO: Your dev project name goes here
 def testProject = // TODO: Your test project name goes here
 def prodProject = // TODO: Your prod project name goes here
 
@@ -49,7 +49,7 @@ pipeline {
         stage("Build & Test") {
             steps {
                 // TODO: Build, Test, and Package birthday-paradox using Maven
-                sh "# TODO: Maven command goes here"
+                sh "mvn clean package"
             }
         }
         stage("Create Image") {
