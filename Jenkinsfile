@@ -63,6 +63,8 @@ pipeline {
                                 **       There is a similar example for this in the deployApplication() function at the top of this file. Reference that function but write your implementation here.
                                 **       Be sure to look at the openshift/build.yaml file to check what parameters the template requires
                                 */
+                                def result = openshift.process(readFile(file:"build.yaml"), "-p", "APPLICATION_NAME=${appName}", "-p", "IMAGE_TAG=${imageTag}", "-p", "APPLICATION_PROJECT=${project}")
+                                openshift.apply(result)
                             }
                             dir("target") {
                                 openshift.selector("bc", appName).startBuild("--from-file=${appName}-${imageTag}.jar").logs("-f")
@@ -79,6 +81,7 @@ pipeline {
                     ** TODO: Use the deployApplication() function, defined above, to deploy birthday-paradox to Dev
                     **       Be sure to use the parameters that have already been defined in the pipeline.
                     */
+                    deployApplication(appName, imageTag, devProject, replicas)
                 }
             }
         }
@@ -97,6 +100,7 @@ pipeline {
                     ** TODO: Use the deployApplication() function, defined above, to deploy birthday-paradox to Test
                     **       Be sure to use the parameters that have already been defined in the pipeline.
                     */
+                    deployApplication(appName, imageTag, devProject, replicas)
                 }
             }
         }
@@ -120,6 +124,7 @@ pipeline {
                     ** TODO: Use the deployApplication() function, defined above, to deploy birthday-paradox to Prod
                     ** Be sure to use the parameters that have already been defined in the pipeline.
                     */
+                    deployApplication(appName, imageTag, devProject, replicas)
                 }
             }
         }
