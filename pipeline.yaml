@@ -28,7 +28,7 @@ objects:
      - type: GitHub
        github:
         secret: webhook-secret
-    ## TODO: Add github webhook trigger
+    ## TODO: Add github webhook trigger with comment
 parameters:
 - name: APPLICATION_NAME
   required: true
