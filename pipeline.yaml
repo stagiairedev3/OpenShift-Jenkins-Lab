@@ -24,6 +24,10 @@ objects:
       type: JenkinsPipeline
       jenkinsPipelineStrategy:
         jenkinsfilePath: ${PIPELINE_SCRIPT}
+    triggers:
+     - type: GitHub
+       github:
+        secret: webhook-secret
     ## TODO: Add github webhook trigger
 parameters:
 - name: APPLICATION_NAME
