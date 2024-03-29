@@ -85,48 +85,6 @@ pipeline {
                 }
             }
         }
-        stage("Copy Image to Test") {
-            agent { label "jenkins-agent-skopeo" }
-            steps {
-                script {
-                    skopeoCopy(skopeoToken, devProject, testProject, appName, imageTag)
-                }
-            }
-        }
-        stage("Deploy Application to Test") {
-            steps {
-                script {
-                    /*
-                    ** TODO: Use the deployApplication() function, defined above, to deploy birthday-paradox to Test
-                    **       Be sure to use the parameters that have already been defined in the pipeline.
-                    */
-                    deployApplication(appName, imageTag, testProject, replicas)
-                }
-            }
-        }
-        stage("Prompt for Prod Approval") {
-            steps {
-                input "Deploy to prod?"
-            }
-        }
-        stage("Copy image to Prod") {
-            agent { label "jenkins-agent-skopeo" }
-            steps {
-                script {
-                    skopeoCopy(skopeoToken, devProject, prodProject, appName, imageTag)
-                }
-            }
-        }
-        stage("Deploy Application to Prod") {
-            steps {
-                script {
-                    /*
-                    ** TODO: Use the deployApplication() function, defined above, to deploy birthday-paradox to Prod
-                    ** Be sure to use the parameters that have already been defined in the pipeline.
-                    */
-                    deployApplication(appName, imageTag, prodProject, replicas)
-                }
-            }
-        }
+
     }
 }
